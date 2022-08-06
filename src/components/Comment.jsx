@@ -1,0 +1,35 @@
+import { Trash } from 'phosphor-react';
+import styles from './Comment.module.css';
+
+export function Comment(){
+    return(
+        <div className={styles.comment}>
+            <img src='https://avatars.githubusercontent.com/u/50754896?v=4'/>
+            
+            <div className={styles.commentBox}>
+                <div className={styles.commentContent}>
+                    <header>
+                        <div className={styles.authotAntime}>
+                            <strong>Edilson De França</strong>
+                            <time title='28 de julho' dateTime='2022 -07 - 28 21:10:10 '>Cerca de 1 hora atrás</time>
+
+                        </div>
+                        <button title='Deletar comentário'>
+                            <Trash sise={20}/>
+                        </button>
+                    </header>
+
+                    <p>Muito bom Devon, parabéns!! 👏👏</p>
+                    
+                </div>
+
+                <footer>
+                    <button>
+                        <ThumbsUp/>
+                        Aplaudir <span>20</span>
+                    </button>
+                </footer>
+            </div>
+        </div>
+    )
+}
