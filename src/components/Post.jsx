@@ -1,22 +1,42 @@
+import { format, formatDistanceToNow } from 'date-fns'
+import ptBR from "date-fns/locale/pt-BR"
 import { useState } from 'react'
 import { Avatar } from './Avatar.jsx'
 import { Comment } from './comment.jsx'
 import styles from './Post.module.css'
 
 
-export function Post( { author, publishedAt, content}){
-    const [comments, setComments] = useState([
-        'post muito bacana, hen?'
 
+
+export function Post( { author, publishedAt, content}){
+
+    const [comments, setComments] = useState([
+        'post muito bacana, hen?',
+    
     ])
+
+    const [newCommentText, setNewCommentText] = useState('')
+
+    const publishedDateFormatted = format( publishedAt, "d 'de' LLLL 'ás' HH:mm'h'",{
+        locale:ptBR,
+
+    })
+
+    const publishedDateRelativeToNow = formatDistanceToNow(publishedAt,{
+        locale: ptBR,
+        addSuffix: true,
+    })
 
     function handleCreateNewComment(){
             event.preventDefault();
 
-            const newContentText = event.target.comment.value
+            setComments([...comments, newCommentText]);
+            setNewCommentText('');
+    }
 
+    function handleNewCommentChange(){
 
-            setComments([...comments, newContentText]);
+        setNewCommentText(event.target.value)
     }
 
     return (
@@ -31,7 +51,9 @@ export function Post( { author, publishedAt, content}){
                     </div>
                 </div>
 
-                <time title='28 de julho' dateTime='2022 -07 - 28 21:10:10 '>Publicado há 1h</time>
+                <time title={publishedDateFormatted} dateTime={publishedAt.toISOString()}>
+                    {publishedDateRelativeToNow}
+                </time>
             </header>
 
             <div className={styles.content}>
@@ -52,6 +74,8 @@ export function Post( { author, publishedAt, content}){
                     name='comment'
 
                     placeholder='Deixei um comentário'
+                    value={newCommentText}
+                    onChange={handleNewCommentChange}
                 />
 
                 <footer>

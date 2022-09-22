@@ -32,7 +32,7 @@ const posts = [
     author:{
       avatarUrl: 'https://avatars.githubusercontent.com/u/50754896?v=4',
       name: 'Pedro silva',
-      role: 'Front End Developer',
+      role: 'Back - End',
     },
     content: [
 
@@ -42,7 +42,7 @@ const posts = [
 
     ],
 
-    publishedAt: new Date('2022-05-25 20:00:00'),
+    publishedAt: new Date('2022-10-25 15:00:00'),
   }
 ]
 
